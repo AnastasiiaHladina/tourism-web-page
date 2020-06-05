@@ -1,0 +1,245 @@
+@mixin link(
+  $font-s: 20px,
+  $font-f: 'Source Sans Pro',
+  $color: $titleCardColor,
+  $bg: none,
+  $m: 200px,
+  $p: 0,
+  $txt-a: center,
+  $txt-d: underline){
+  font-size: $font-s;
+  font-family: $font-f;
+  color: $color;
+  background: $bg;
+  margin: $m;
+  padding: $p;
+  text-align: $txt-a;
+  text-decoration: $txt-d;
+  cursor: pointer;
+}
+@mixin button(
+  $font-s: 20px,
+  $font-f: 'Source Sans Pro',
+  $color: $titleCardColor,
+  $bg: $bgButton,
+  $m: 20px 0,
+  $p: 10px 40px,
+  $txt-a: center,
+  $border: none,
+  $border-r: 0){
+  font-size: $font-s;
+  font-family: $font-f;
+  color: $color;
+  background: $bg;
+  margin: $m;
+  padding: $p;
+  text-align: $txt-a;
+  border: $border;
+  border-radius: $border-r;
+  cursor: pointer;
+}
+@mixin selection($content, $bc, $color, $ml, $mt, $pos) {
+  content: $content;
+  background-color: $bc;
+  color: $color;
+  margin-left: $ml;
+  margin-top: $mt;
+  position: $pos;
+}
+
+.fontWeight {
+  font-weight: 600;
+}
+
+$fontSize: (
+  "40px": 40px,
+  "28px": 28px,
+  "20px": 20px,
+  "5em": 5em,
+  "3em": 3em
+);
+
+body {
+  background-color: $bgBody;
+  margin: 0;
+  .header {
+    height: 800px;
+    .header-wrap {
+      background: $background-img 0 60%;
+      background-size: cover;
+      border-bottom-right-radius: 400px;
+      height: 100%;
+      padding-left: 100px;
+      .landing-logo {
+        display: grid;
+        grid-template-columns: 1fr 2fr 30fr;
+        img {
+          align-self: center;
+        }
+        p {
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size: map-get($fontSize, '40px');
+          @extend .fontWeight;
+          color: $logoColor;
+          display: grid;
+          span {
+            display: block;
+            justify-self: center;
+            @extend .fontWeight;
+          }
+        }
+      }
+      .header_heading {
+        font-family: 'Hind', sans-serif;
+        font-size: map-get($fontSize, '5em');
+        @extend .fontWeight;
+        color: $siteTitle;
+        width: (100% / 3);
+        margin-block-start: 0;
+        margin-block-end: 0;
+        &:before {
+          @include selection("awesome", $textSelection, $logoColor, 0, 163px, absolute);
+          height: 60px;
+          display: grid;
+          align-content: center;
+        }
+      }
+      .header_text {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: map-get($fontSize, '20px');
+        color: $logoColor;
+        width: 800px;
+      }
+      div {
+        .header_button {
+          @include button;
+        }
+        .login {
+          @include link;
+        }
+      }
+    }
+  }
+  main.section{
+    display: grid;
+    position: relative;
+    .section_card_wrap {
+      display: grid;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-row-gap: 30px;
+      justify-content: center;
+      .section_card {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        background-color: $bgArticle;
+        width: 900px;
+        padding: 30px;
+        border-radius: 5px;
+        .section_card_img {
+          align-self: center;
+        }
+        .section_card_right_container {
+          text-align: center;
+          padding: 0 40px;
+          color: $footerText;
+          font-family: 'Hind', sans-serif;
+          @extend .fontWeight;
+          .section_card_heading {
+            color: $titleCardColor;
+            font-family: 'Fresca', sans-serif;
+            font-size: map-get($fontSize, '20px');
+          }
+          .section_card_text {
+            text-align: left;
+          }
+          .section_link {
+            @include link(14px, 'Source Sans Pro', $footerText, none, 0, 0, center, underline);
+          }
+        }
+      }
+    }
+    .section_text {
+      font-size: map-get($fontSize, '3em');
+      @extend .fontWeight;
+      font-family: 'Hind', sans-serif;
+      color: $siteTitle;
+      line-height: 1em;
+      text-align: center;
+
+      &:before {
+        @include selection("adventure", $textSelection, $siteTitle, 267px, 0, absolute);
+      }
+    }
+    .section_banner {
+      background: linear-gradient(to left, $gradient, $bgButton);
+      width: 800px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      justify-self: center;
+      align-self: center;
+      border-radius: 5px;
+      margin-top: 100px;
+      .section_banner_text_wrap {
+        padding: 0 80px;
+        display: grid;
+        .section_banner_heading {
+          color: $siteTitle;
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size: map-get($fontSize, '28px');
+          margin-bottom: 0;
+          &:before {
+            @include selection("start", $textSelection, $siteTitle, 107px, 0, absolute);
+          }
+        }
+        .section_banner_text {
+          color: $footerText;
+          @extend .fontWeight;
+          margin-bottom: 30px;
+        }
+      }
+      .section_banner_button {
+        @include button;
+        align-self: center;
+        width: 140px;
+        height: 45px;
+      }
+    }
+  }
+  footer.footer {
+    margin-top: -60px;
+    padding-top: 90px;
+    background-color: $bgFooter;
+    .footer-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-items: center;
+      align-items: center;
+      .landing-logo {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        img {
+          align-self: center;
+        }
+        p {
+          font-family: 'Source Sans Pro', sans-serif;
+          font-size: map-get($fontSize, '40px');
+          @extend .fontWeight;
+          color: $footerText;
+          display: grid;
+          span {
+            display: block;
+            @extend .fontWeight;
+            justify-self: center;
+          }
+        }
+      }
+      .footer_text {
+        color: $footerText;
+        padding: 0 180px;
+      }
+      .footer-cr {
+        color: $footerText;
+      }
+    }
+  }
+}
